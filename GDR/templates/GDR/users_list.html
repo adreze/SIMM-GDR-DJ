@@ -1,0 +1,10 @@
+<h1>Liste des utilisateurs</h1>
+{% if users %}
+<ul>
+    {% for user in users %}
+    <li>{{ user }}</li>
+    {% endfor %}
+</ul>
+{% else %}
+    <p>Aucun livre !</p>
+{% endif %}
