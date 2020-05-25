@@ -15,16 +15,17 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.views.generic import TemplateView
-from django.urls import path
+from django.urls import path, include
 from . import views
+from django.contrib.auth import views as auth_views
 from GDR.views import AboutView
 
 
 urlpatterns = [
     path('', views.index, name='index'),
     path('login', views.login, name='login'),
-    # path('login', views.login.as_view('GDR/login.html'), name='login'),
-    # path('logout', views.logout.as_view('GDR/logout.html'), name='logout'),
-    path('allusers', views.user_list)
-
+    path('loginin', auth_views.auth_login, name='loginin'),
+    path('logout', auth_views.auth_logout, name='logout'),
+    path('allusers', views.user_list),
+    path('accounts/', include('django.contrib.auth.urls')),
 ]
