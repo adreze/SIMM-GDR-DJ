@@ -18,10 +18,11 @@ h3{
 .container{
 height: 100%;
 align-content: center;
+color: #ffcc2f;
 }
 
 .card{
-height: 280px;
+height: 400px;
 margin-top: auto;
 margin-bottom: auto;
 width: 400px;
