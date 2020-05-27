@@ -2,49 +2,37 @@
 {% load crispy_forms_tags %}
 <html>
 <head>
-	<title>Login Page</title>
    <!--Login theme made by Mutiullah Samim modified by Michael Mazzuca -->
-  <link rel="stylesheet" type="text/css" href="{% static "GDR/css/bootstrap.min.css" %}">
+	<link rel="stylesheet" type="text/css" href="{% static "GDR/css/bootstrap.min.css" %}">
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-  <link rel="stylesheet" type="text/css" href="{% static "GDR/css/stylesloginpage.css" %}">
+  	<link rel="stylesheet" type="text/css" href="{% static "GDR/css/stylesloginpage.css" %}">
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 </head>
- <title>Gestion des remplacements</title>
-</head>
+	 <title>Gestion des remplacements</title>
 <body>
 <div class="container">
 	<div class="d-flex justify-content-center h-100">
 		<div class="card">
-			<div class="card-header">
+			<div class="card-header justify-content-center">
 				<h3>Gestion des remplacements</h3>
 			</div>
 			<div class="card-body">
   	<form method="post" action="{% url 'login' %}">
 			{% csrf_token %}
-					<div class="input-group form-group">
-						<div class="input-group-prepend">
-							<span class="input-group-text"><i class="fas fa-user"></i></span>
-						</div>
-                      {{ form.username.label_tag }}{{ form.username}}
-					</div>
-					<div class="input-group form-group">
-						<div class="input-group-prepend">
-							<span class="input-group-text"><i class="fas fa-key"></i></span>
-						</div>
-						{{ form.password.label_tag }}{{ form.password }}
-					</div>
-					<div class="form-group">
-						<input type="submit" value="Login" class="btn float-right login_btn">
-						<input type="hidden" name="next" value="{{ next }}" />
-          </div>
-          <div>
-				<div class="d-flex justify-content-center alert">
-				</div>
+			{{ form|crispy }}
+			<div class="form-group">
+				<input type="submit" value="Login" class="btn float-right login_btn">
+				<input type="hidden" name="next" value="{{ next }}" />
 			</div>
-				</form>
-      </div>
-    </div>
-
-  </div>
+	</form>
+			</div>
+		</div>
+	</div>
 </div>
 </body>
 </html>

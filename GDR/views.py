@@ -4,14 +4,20 @@ from django.template import loader
 from django.contrib.auth import authenticate
 from GDR.models import User
 from django.views.generic import TemplateView
-
+from .forms import UserForm
 
 def index(request):
     return HttpResponse("Hello, world. You're at the GDR's index.")
 
 
 def login(request):
-    return render(request, 'GDR/login.html')
+    form = UserForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+    context = {
+        'form': form
+    }
+    return render(request, 'registration/login.html', context)
 
 
 # def login_in(request):
@@ -30,6 +36,7 @@ def user_list(request):
         'users': users
     }
     return render(request, 'GDR/users_list.html', context)
+
 
 class AboutView(TemplateView):
     template_name = "login.html"
