@@ -1,28 +1,50 @@
-<title>Log in!</title>
+{% load static %}
+<html>
+<head>
+    <title>Index - Gestion des remplacements</title>
+    <link rel="stylesheet" type="text/css" href="{% static "GDR/css/bootstrap.min.css" %}">
+    <link rel="stylesheet" type="text/css" href="{% static "GDR/css/styles.css" %}">
+    <script src="{% static "GDR/js/jquery.min.js" %}"> </script>
+    <script src="{% static "GDR/js/bootstrap.min.js" %}"> </script>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="#"><img src="{% static "GDR/images/UCLouvainLogo.png" %}" alt="UCLouvain Logo" height="42" width="250" ></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
 
-{% block body %}
-<form method="post">
-<!--    {% if error %}-->
-<!--        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>-->
-<!--    {% endif %}-->
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Dashboard <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="teamreplacements.php">Mon équipe</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="myreplacements.php">Mes remplacements</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Nouveau
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="addreplacement.php">Remplacement</a>
+          <a class="dropdown-item" href="addreinstallation.php">Réinstallation</a>
+          <a class="dropdown-item" href="addinstallation.php">Installation</a>
+          <a class="dropdown-item" href="addstudentpc.php">Pc pour étudiant</a>
+        </div>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0" action="{% url 'logout' %}">
+    <p class="na white">Connecté en tant que :  {{ user.username }}
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Déconnexion</button>
+    </form>
+  </div>
+</nav>
 
-<!--    {% if app.user %}-->
-<!--        <div class="mb-3">-->
-<!--            You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>-->
-<!--        </div>-->
-<!--    {% endif %}-->
+</body>
 
-    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-    <label for="inputUsername">Username</label>
-    <input type="text" value="{{ last_username }}" name="username" id="inputUsername" class="form-control" required autofocus>
-    <label for="inputPassword">Password</label>
-    <input type="password" name="password" id="inputPassword" class="form-control" required>
+</html>
 
-    <input type="hidden" name="_csrf_token"
-           value="{{ csrf_token('authenticate') }}"
-    >
-
-    <button class="btn btn-lg btn-primary" type="submit">
-        Sign in
-    </button>
-</form>

@@ -22,7 +22,16 @@ from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     path('', views.index, name='index'),
+
     path('login', auth_views.LoginView.as_view(), name='login'),
-    path('allusers', views.user_list),
+    path('logout', auth_views.LogoutView.as_view(), name='logout'),
     path('accounts/', include('django.contrib.auth.urls')),
+
+    path('team_replacements', views.team_replacements, name='team_replacements'),
+    path('my_replacements', views.my_replacements, name='my_replacements'),
+    
+    path('add/replacement', views.add_replacement, name='add_replacement'),
+    path('add/reinstallation', views.add_reinstall, name='add_reinstall'),
+    path('add/installation', views.add_install, name='add_install'),
+    path('add/student_pc', views.add_student_pc, name='add_student_pc'),
 ]
