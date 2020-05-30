@@ -18,6 +18,7 @@ from django.contrib import admin
 from django.urls import path, include
 from . import views
 from django.contrib.auth import views as auth_views
+from django.contrib.auth.models import User
 
 
 urlpatterns = [
@@ -31,7 +32,7 @@ urlpatterns = [
     path('my_replacements', views.my_replacements, name='my_replacements'),
     
     path('add/replacement', views.add_replacement, name='add_replacement'),
-    path('add/reinstallation', views.add_reinstall, name='add_reinstall'),
-    path('add/installation', views.add_install, name='add_install'),
+    path('add/reinstall', views.add_reinstall, name='add_reinstall'),
+    path('add/install', views.add_install, name='add_install'),
     path('add/student_pc', views.add_student_pc, name='add_student_pc'),
 ]

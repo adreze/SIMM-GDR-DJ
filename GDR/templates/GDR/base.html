@@ -1,0 +1,54 @@
+{% load static %}
+<html>
+<head>
+    <title>{% block title %}Gestion des remplacements{% endblock %}</title>
+    <link rel="stylesheet" type="text/css" href="{% static "GDR/css/bootstrap.min.css" %}">
+    <link rel="stylesheet" type="text/css" href="{% static "GDR/css/styles.css" %}">
+    <script src="{% static "GDR/js/jquery.min.js" %}"> </script>
+    <script src="{% static "GDR/js/bootstrap.min.js" %}"> </script>
+</head>
+<body>
+{% block navbar %}
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="#"><img src="{% static "GDR/images/UCLouvainLogo.png" %}" alt="UCLouvain Logo" height="42" width="250" ></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Dashboard <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'team_replacements' %}">Mon équipe</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'my_replacements' %}">Mes remplacements</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Nouveau
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="{% url 'add_replacement' %}">Remplacement</a>
+          <a class="dropdown-item" href="{% url 'add_reinstall' %}">Réinstallation</a>
+          <a class="dropdown-item" href="{% url 'add_install' %}">Installation</a>
+          <a class="dropdown-item" href="{% url 'add_student_pc' %}">Pc pour étudiant</a>
+        </div>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0" action="{% url 'logout' %}">
+    <p class="na white">Connecté en tant que :  {{ user.username }}
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Déconnexion</button>
+      {% if perms.GDR.add_user %}
+      <button class="btn btn-outline-warning my-2 my-sm-0" type="submit">Admin</button>
+      {% endif %}
+    </form>
+  </div>
+</nav>
+{% endblock %}
+<div id="content">
+        {% block content %}{% endblock %}
+    </div>
+
