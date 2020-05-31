@@ -8,15 +8,12 @@ TEAMS = (
 )
 
 
-class User(models.Model):
-    name = models.CharField(max_length=200)
-    username = models.CharField(max_length=200)
-    roles = models.CharField(max_length=200)
-    password = models.CharField(max_length=200)
-    team = models.CharField(max_length=200)
-
-    def __str__(self):
-        return self.name
+TYPES = (
+    ('Ins', 'Installation'),
+    ('Reins', 'Réinstallation'),
+    ('Rep', 'Remplacement'),
+    ('Stud', 'Pc étudiant'),
+)
 
 
 class Install(models.Model):
@@ -33,10 +30,13 @@ class Install(models.Model):
     backup = models.BooleanField(default=False)
     invoice = models.BooleanField(default=False)
     apex = models.BooleanField(default=False)
-    type = models.CharField(max_length=200)
+    type = models.CharField(max_length=200, choices=TYPES)
     byteam = models.CharField(max_length=20, choices=TEAMS)
     comments = models.CharField(max_length=200)
 
+
+def __str__(self):
+    return self.get_type_display()
 
 class Reinstall(models.Model):
     simmuser = models.CharField(max_length=200)
@@ -48,7 +48,7 @@ class Reinstall(models.Model):
     appext = models.BooleanField(default=False)
     printers = models.BooleanField(default=False)
     backup = models.BooleanField(default=False)
-    type = models.CharField(max_length=200)
+    type = models.CharField(max_length=200, choices=TYPES)
     byteam = models.CharField(max_length=20, choices=TEAMS)
     comments = models.CharField(max_length=200)
 
@@ -68,7 +68,7 @@ class Replacement(models.Model):
     backupold = models.BooleanField(default=False)
     invoice = models.BooleanField(default=False)
     apex = models.BooleanField(default=False)
-    type = models.CharField(max_length=200)
+    type = models.CharField(max_length=200, choices=TYPES)
     byteam = models.CharField(max_length=20, choices=TEAMS)
     comments = models.CharField(max_length=200)
 
@@ -82,6 +82,6 @@ class StudentPC(models.Model):
     appext = models.BooleanField(default=False)
     adminblank = models.BooleanField(default=False)
     lduninstall = models.BooleanField(default=False)
-    type = models.CharField(max_length=200)
+    type = models.CharField(max_length=200, choices=TYPES)
     byteam = models.CharField(max_length=20, choices=TEAMS)
     comments = models.CharField(max_length=200)

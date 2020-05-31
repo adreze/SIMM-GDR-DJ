@@ -1,5 +1,50 @@
 {% extends "GDR/base.html" %}
+{% load static %}
 {% block title %}Index - Gestion des remplacements{% endblock %}
 {% block content %}
+<br>
+  <h1>
+    <img src="{% static "GDR/images/icons/person-fill.svg" %}" alt ="" width = "32" height="32" title="Mes remplacements"> Mes remplacements
+  </h1>
+
+{% if installs %}
+<table class='table table-striped'>
+            <thead>
+              <tr>
+                <th scope='col'>Utilisateur</th>
+                <th scope='col'>Nouvel ordinateur</th>
+                <th scope='col'>Type de remplacement</th>
+                <th scope='col'>Membre équipe</th>
+                <th scope='col'>Date planifié</th>
+              </tr>
+            </thead>
+            <tbody>
+
+    {% for install in installs %}
+    <ul>
+        <tr>
+            <td>
+                {{ install.person }}
+            </td>
+            <td>
+                {{ install.computer }}
+            </td>
+            <td>
+                {{ install.get_type_display }}
+            </td>
+            <td>
+                {{ install.simmuser }}
+            </td>
+            <td>
+                {{ install.dateplanned }};
+            </td>
+        </tr>
+</ul>
+    {% endfor %}
+
+{% else %}
+    <p>Aucune install !</p>
+{% endif %}
+
 
 {% endblock %}
