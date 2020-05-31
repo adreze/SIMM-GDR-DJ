@@ -3,47 +3,116 @@
 {% block title %}Index - Gestion des remplacements{% endblock %}
 {% block content %}
 <br>
-  <h1>
-    <img src="{% static "GDR/images/icons/person-fill.svg" %}" alt ="" width = "32" height="32" title="Mes remplacements"> Mes remplacements
-  </h1>
+
+<div class="d-flex justify-content-center">
+  <h1><img src="{% static "GDR/images/icons/person-fill.svg" %}" alt ="" width = "32" height="32" title="Mes remplacements"> Mes remplacements - {{request.user}}</h1>
+</div>
+<br>
+
+<h2><img src="{% static "GDR/images/icons/person-fill.svg" %}" alt ="" width = "32" height="32" title="Mes installations"> Mes installations</h2>
 
 {% if installs %}
+
 <table class='table table-striped'>
             <thead>
               <tr>
                 <th scope='col'>Utilisateur</th>
                 <th scope='col'>Nouvel ordinateur</th>
-                <th scope='col'>Type de remplacement</th>
-                <th scope='col'>Membre équipe</th>
                 <th scope='col'>Date planifié</th>
               </tr>
             </thead>
-            <tbody>
 
     {% for install in installs %}
-    <ul>
+    <tbody>
         <tr>
-            <td>
-                {{ install.person }}
-            </td>
-            <td>
-                {{ install.computer }}
-            </td>
-            <td>
-                {{ install.get_type_display }}
-            </td>
-            <td>
-                {{ install.simmuser }}
-            </td>
-            <td>
-                {{ install.dateplanned }};
-            </td>
+            <td>{{ install.person }}</td>
+            <td>{{ install.computer }}</td>
+            <td>{{ install.dateplanned }}</td>
         </tr>
-</ul>
+    </tbody>
+</table>
     {% endfor %}
-
 {% else %}
     <p>Aucune install !</p>
+{% endif %}
+
+<h2><img src="{% static "GDR/images/icons/person-fill.svg" %}" alt ="" width = "32" height="32" title="Mes reinstallations"> Mes reinstallations</h2>
+
+{% if reinstalls %}
+
+<table class='table table-striped'>
+    <thead>
+      <tr>
+        <th scope='col'>Utilisateur</th>
+        <th scope='col'>Nouvel ordinateur</th>
+        <th scope='col'>Date planifié</th>
+      </tr>
+    </thead>
+    {% for reinstall in reinstalls %}
+    <tbody>
+        <tr>
+            <td>{{ reinstall.person }}</td>
+            <td>{{ reinstall.computer }}</td>
+            <td>{{ reinstall.dateplanned }}</td>
+        </tr>
+    </tbody>
+</table>
+    {% endfor %}
+{% else %}
+    <p>Aucune reinstall !</p>
+{% endif %}
+
+<h2><img src="{% static "GDR/images/icons/person-fill.svg" %}" alt ="" width = "32" height="32" title="Mes remplacements"> Mes remplacements</h2>
+
+{% if replacements %}
+
+<table class='table table-striped'>
+    <thead>
+      <tr>
+        <th scope='col'>Utilisateur</th>
+        <th scope='col'>Nouvel ordinateur</th>
+        <th scope='col'>Date planifié</th>
+      </tr>
+    </thead>
+
+{% for replacement in replacements %}
+    <tbody>
+        <tr>
+            <td>{{ replacement.person }}</td>
+            <td>{{ replacement.computer }}</td>
+            <td>{{ replacement.dateplanned }}</td>
+        </tr>
+    </tbody>
+</table>
+    {% endfor %}
+{% else %}
+    <p>Aucun remplacement !</p>
+{% endif %}
+<h2><img src="{% static "GDR/images/icons/person-fill.svg" %}" alt ="" width = "32" height="32" title="Mes Pc étudiants"> Mes Pc étudiants</h2>
+
+{% if student_pcs %}
+
+<table class='table table-striped'>
+    <thead>
+      <tr>
+        <th scope='col'>Utilisateur</th>
+        <th scope='col'>Nouvel ordinateur</th>
+        <th scope='col'>Date planifié</th>
+      </tr>
+    </thead>
+
+{% for student_pc in student_pcs %}
+    <tbody>
+        <tr>
+            <td>{{ student_pc.person }}</td>
+            <td>{{ student_pc.computer }}</td>
+            <td>{{ student_pc.dateplanned }}</td>
+        </tr>
+    </tbody>
+</table>
+    {% endfor %}
+{% else %}
+    <p>Aucun pc étudiant !</p>
 {% endif %}
 
 

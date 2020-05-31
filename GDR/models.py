@@ -21,7 +21,7 @@ class Install(models.Model):
     simmuser = models.CharField(max_length=200)
     person = models.CharField(max_length=200)
     computer = models.CharField(max_length=200)
-    dateplanned = models.DateTimeField('date prevue')
+    dateplanned = models.DateField('date prevue')
     dcu = models.BooleanField(default=False)
     gds = models.BooleanField(default=False)
     appext = models.BooleanField(default=False)
@@ -38,11 +38,12 @@ class Install(models.Model):
 def __str__(self):
     return self.get_type_display()
 
+
 class Reinstall(models.Model):
     simmuser = models.CharField(max_length=200)
     person = models.CharField(max_length=200)
     computer = models.CharField(max_length=200)
-    dateplanned = models.DateTimeField('date prevue')
+    dateplanned = models.DateField('date prevue')
     dcu = models.BooleanField(default=False)
     datatransfert = models.BooleanField(default=False)
     appext = models.BooleanField(default=False)
@@ -57,7 +58,7 @@ class Replacement(models.Model):
     simmuser = models.CharField(max_length=200)
     person = models.CharField(max_length=200)
     computer = models.CharField(max_length=200)
-    dateplanned = models.DateTimeField('date prevue')
+    dateplanned = models.DateField('date prevue')
     dcu = models.BooleanField(default=False)
     gds = models.BooleanField(default=False)
     datatransfert = models.BooleanField(default=False)
@@ -77,7 +78,7 @@ class StudentPC(models.Model):
     simmuser = models.CharField(max_length=200)
     person = models.CharField(max_length=200)
     computer = models.CharField(max_length=200)
-    dateplanned = models.DateTimeField('date prevue')
+    dateplanned = models.DateField('date prevue')
     dcu = models.BooleanField(default=False)
     appext = models.BooleanField(default=False)
     adminblank = models.BooleanField(default=False)

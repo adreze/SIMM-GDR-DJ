@@ -2,15 +2,23 @@ from django.contrib.auth import login, authenticate
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
-from GDR.models import Install
+from GDR.models import Install, StudentPC, Replacement, Reinstall
+
+
 #from .forms import UserForm
 
 
 @login_required
 def index(request):
     installs = Install.objects.filter(simmuser=request.user)
+    reinstalls = Reinstall.objects.filter(simmuser=request.user)
+    replacements = Replacement.objects.filter(simmuser=request.user)
+    student_pcs = StudentPC.objects.filter(simmuser=request.user)
     context = {
-        'installs': installs
+        'installs': installs,
+        'reinstalls': reinstalls,
+        'replacements': replacements,
+        'student_pcs': student_pcs
     }
     return render(request, 'GDR/index.html', context)
 
