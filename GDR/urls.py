@@ -28,7 +28,6 @@ urlpatterns = [
     path('logout', auth_views.LogoutView.as_view(), name='logout'),
     path('accounts/', include('django.contrib.auth.urls')),
 
-    path('team_replacements', views.team_replacements, name='team_replacements'),
     path('my_replacements', views.my_replacements, name='my_replacements'),
     
     path('add/replacement', views.add_replacement, name='add_replacement'),

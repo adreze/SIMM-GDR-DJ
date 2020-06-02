@@ -6,6 +6,7 @@
     <link rel="stylesheet" type="text/css" href="{% static "GDR/css/styles.css" %}">
     <script src="{% static "GDR/js/jquery.min.js" %}"> </script>
     <script src="{% static "GDR/js/bootstrap.min.js" %}"> </script>
+  {% block head %}{% endblock %}
 </head>
 <body>
 {% block navbar %}
@@ -17,14 +18,11 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Dashboard <span class="sr-only">(current)</span></a>
+      <li class="nav-item {% block nav1 %}{% endblock %}">
+        <a class="nav-link" href="{% url 'index' %}">Mon équipe <span class="sr-only"></span></a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="{% url 'team_replacements' %}">Mon équipe</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="{% url 'my_replacements' %}">Mes remplacements</a>
+      <li class="nav-item {% block nav2 %}{% endblock %}">
+        <a class="nav-link" href="{% url 'my_replacements' %}"><span class="sr-only">current</span>Mes remplacements</a>
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

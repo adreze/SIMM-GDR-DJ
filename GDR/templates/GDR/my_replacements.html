@@ -1,12 +1,12 @@
 {% extends "GDR/base.html" %}
 {% load static %}
 {% block title %}Index - Gestion des remplacements{% endblock %}
-{% block nav1 %}active{% endblock%}
+{% block nav2 %}active{% endblock%}
 {% block content %}
 <br>
 
 <div class="d-flex justify-content-center">
-    <h1><img src="{% static "GDR/images/icons/person-fill.svg" %}" alt ="" width = "32" height="32" title="TeamReplacementWIP"> Remplacements de l'équipe {{ current_team }}</h1>
+    <h1><img src="{% static "GDR/images/icons/person-fill.svg" %}" alt ="" width = "32" height="32" title="TeamReplacementWIP"> Mes remplacements</h1>
 </div>
 <br>
 <!--<h2><img src="{% static "GDR/images/icons/person-fill.svg" %}" alt ="" width = "32" height="32" title="TeamReplacementDone"> Remplacements déja éffectué</h2>-->
@@ -21,7 +21,6 @@
                   <th scope='col'>Utilisateur</th>
                   <th scope='col'>Nouvel ordinateur</th>
                   <th scope='col'>Type</th>
-                  <th scope='col'>Membre SIMM</th>
                   <th scope='col'>Date planifié</th>
               </tr>
             </thead>
@@ -32,7 +31,6 @@
             <td>{{ install.person }}</td>
             <td>{{ install.computer }}</td>
             <td>{{ install.get_type_display }}</td>
-            <td>{{ install.simmuser }}</td>
             <td>{{ install.dateplanned }}</td>
         </tr>
     </tbody>
@@ -47,7 +45,6 @@
             <td>{{ reinstall.person }}</td>
             <td>{{ reinstall.computer }}</td>
             <td>{{ reinstall.get_type_display }}</td>
-            <td>{{ reinstall.simmuser }}</td>
             <td>{{ reinstall.dateplanned }}</td>
         </tr>
     </tbody>
@@ -62,7 +59,6 @@
                 <td>{{ replacement.person }}</td>
                 <td>{{ replacement.computer }}</td>
                 <td>{{ replacement.get_type_display }}</td>
-                <td>{{ replacement.simmuser }}</td>
                 <td>{{ replacement.dateplanned }}</td>
             </tr>
         </tbody>
@@ -76,7 +72,6 @@
                 <td>{{ student_pc.person }}</td>
                 <td>{{ student_pc.computer }}</td>
                 <td>{{ student_pc.get_type_display }}</td>
-                <td>{{ student_pc.simmuser }}</td>
                 <td>{{ student_pc.dateplanned }}</td>
             </tr>
         </tbody>
