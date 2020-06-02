@@ -80,19 +80,18 @@
                 <td>{{ student_pc.dateplanned }}</td>
             </tr>
         </tbody>
-</table>
     {% endfor %}
 {% endif %}
-
-{% if all_replacement %}
-    {% for replacement in all_replacement %}
-        <tbody>
-            <tr>
-                <td>{{ replacement.person }}</td>
-                <td>{{ replacement.computer }}</td>
-                <td>{{ replacement.dateplanned }}</td>
-            </tr>
-        </tbody>
+</table>
+<!--{% if all_replacement %}-->
+<!--    {% for replacement in all_replacement %}-->
+<!--        <tbody>-->
+<!--            <tr>-->
+<!--                <td>{{ replacement.person }}</td>-->
+<!--                <td>{{ replacement.computer }}</td>-->
+<!--                <td>{{ replacement.dateplanned }}</td>-->
+<!--            </tr>-->
+<!--        </tbody>-->
 </table>
     {% endfor %}
 {% endif %}
