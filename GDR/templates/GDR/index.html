@@ -12,9 +12,6 @@
 <!--<h2><img src="{% static "GDR/images/icons/person-fill.svg" %}" alt ="" width = "32" height="32" title="TeamReplacementDone"> Remplacements déja éffectué</h2>-->
 
 <br>
-
-{% if installs %}
-
 <table class='table table-striped'>
             <thead>
               <tr>
@@ -23,9 +20,11 @@
                   <th scope='col'>Type</th>
                   <th scope='col'>Membre SIMM</th>
                   <th scope='col'>Date planifié</th>
+                  <th scope='col'>Actions</th>
               </tr>
             </thead>
 
+{% if installs %}
     {% for install in installs %}
     <tbody>
         <tr>
@@ -33,7 +32,11 @@
             <td>{{ install.computer }}</td>
             <td>{{ install.get_type_display }}</td>
             <td>{{ install.simmuser }}</td>
-            <td>{{ install.dateplanned }}</td>
+            <td>{{ install.dateplanned|date:"d.m.Y" }}</td>
+            <td>
+                <button type="button" class="btn btn-warning" onclick="location.href='{% url 'edit' id_p=install.id type_p=install.type %}'">Modifier</button>
+                <button type="button" class="btn btn-danger" onclick="location.href='{% url 'delete' id_p=install.id type_p=install.type %}'">Effacer</button>
+            </td>
         </tr>
     </tbody>
 
@@ -48,7 +51,11 @@
             <td>{{ reinstall.computer }}</td>
             <td>{{ reinstall.get_type_display }}</td>
             <td>{{ reinstall.simmuser }}</td>
-            <td>{{ reinstall.dateplanned }}</td>
+            <td>{{ reinstall.dateplanned|date:"d.m.Y" }}</td>
+            <td>
+                <button type="button" class="btn btn-warning" onclick="location.href='{% url 'edit' id_p=reinstall.id type_p=reinstall.type %}'">Modifier</button>
+                <button type="button" class="btn btn-danger" onclick="location.href='{% url 'delete' id_p=reinstall.id type_p=reinstall.type %}'">Effacer</button>
+            </td>
         </tr>
     </tbody>
 
@@ -63,7 +70,11 @@
                 <td>{{ replacement.computer }}</td>
                 <td>{{ replacement.get_type_display }}</td>
                 <td>{{ replacement.simmuser }}</td>
-                <td>{{ replacement.dateplanned }}</td>
+                <td>{{ replacement.dateplanned|date:"d.m.Y" }}</td>
+                <td>
+                    <button type="button" class="btn btn-warning" onclick="location.href='{% url 'edit' id_p=replacement.id type_p=replacement.type %}'">Modifier</button>
+                    <button type="button" class="btn btn-danger" onclick="location.href='{% url 'delete' id_p=replacement.id type_p=replacement.type %}'">Effacer</button>
+                </td>
             </tr>
         </tbody>
     {% endfor %}
@@ -77,23 +88,15 @@
                 <td>{{ student_pc.computer }}</td>
                 <td>{{ student_pc.get_type_display }}</td>
                 <td>{{ student_pc.simmuser }}</td>
-                <td>{{ student_pc.dateplanned }}</td>
+                <td>{{ student_pc.dateplanned|date:"d.m.Y" }}</td>
+                <td>
+                    <button type="button" class="btn btn-warning" onclick="location.href='{% url 'edit' id_p=student_pc.id type_p=student_pc.type %}'">Modifier</button>
+                    <button type="button" class="btn btn-danger" onclick="location.href='{% url 'delete' id_p=student_pc.id type_p=student_pc.type %}'">Effacer</button>
+                </td>
             </tr>
         </tbody>
     {% endfor %}
 {% endif %}
 </table>
-<!--{% if all_replacement %}-->
-<!--    {% for replacement in all_replacement %}-->
-<!--        <tbody>-->
-<!--            <tr>-->
-<!--                <td>{{ replacement.person }}</td>-->
-<!--                <td>{{ replacement.computer }}</td>-->
-<!--                <td>{{ replacement.dateplanned }}</td>-->
-<!--            </tr>-->
-<!--        </tbody>-->
-</table>
-    {% endfor %}
-{% endif %}
 
 {% endblock %}

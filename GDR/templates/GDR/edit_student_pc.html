@@ -1,0 +1,26 @@
+{% extends "GDR/base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block head %}{% endblock %}
+{% block content %}
+<div class="container">
+	<br>
+	<div class="">
+		<div class="card">
+            <h1 class="center">Modification d'un pc étudiant </h1>
+			<div class="card-body" >
+  	<form method="post">
+			{% csrf_token %}
+		<div class = "col-lm">
+			{{ form|crispy }}
+		</div>
+			<div class="form-group">
+				<input type="submit" value="Envoyer" class="btn float-right login_btn">
+			</div>
+	</form>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+{% endblock %}

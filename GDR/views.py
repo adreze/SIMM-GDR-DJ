@@ -6,6 +6,7 @@ from django.urls import reverse
 from GDR.forms import PcStudentsForm, InstallForm, ReinstallForm, ReplacementForm
 from GDR.models import Install, StudentPC, Replacement, Reinstall
 
+
 #from .forms import UserForm
 
 
@@ -121,6 +122,60 @@ def add_student_pc(request):
     else:
         form = PcStudentsForm()
     return render(request, 'GDR/add_student_pc.html', {'form': form})
+
+
+def delete_element(request):
+    pass
+
+
+def edit(request, type_p, id_p):
+    url = reverse('index')
+    form_selected = "Aucun"
+    db_selected = "Aucun"
+    template_selected = 'GDR/index.html'
+
+    if type_p == "Ins":
+        form_selected = InstallForm
+        db_selected = Install
+        template_selected = 'GDR/edit_install.html'
+    if type_p == "Reins":
+        form_selected = ReinstallForm
+        db_selected = Reinstall
+        template_selected = 'GDR/edit_reinstall.html'
+    if type_p == "Rep":
+        form_selected = ReplacementForm
+        db_selected = Replacement
+        template_selected = 'GDR/edit_replacement.html'
+    if type_p == "Stud":
+        form_selected = PcStudentsForm
+        db_selected = StudentPC
+        template_selected = 'GDR/edit_student_pc.html'
+    instance = db_selected.objects.get(id=id_p)
+
+    if request.method == "POST":
+        form = form_selected(request.POST, instance=instance)
+        form.save()
+        return HttpResponseRedirect(url)
+    else:
+        form = form_selected(instance=instance)
+    return render(request, template_selected, {'form': form})
+
+
+def delete(request,type_p,id_p):
+    url = reverse('index')
+    if type_p == "Ins":
+        db_selected = Install
+    if type_p == "Reins":
+        db_selected = Reinstall
+    if type_p == "Rep":
+        db_selected = Replacement
+    if type_p == "Stud":
+        db_selected = StudentPC
+    else:
+        db_selected = "Aucun"
+    db_selected.objects.filter(id=id_p).delete()
+    return HttpResponseRedirect(url)
+
 
 
 def check_team(request):
