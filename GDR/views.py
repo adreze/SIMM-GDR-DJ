@@ -3,11 +3,14 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
+from tablib import Dataset
+
 from GDR.forms import PcStudentsForm, InstallForm, ReinstallForm, ReplacementForm
 from GDR.models import Install, StudentPC, Replacement, Reinstall
 
 
 #from .forms import UserForm
+from library.resources import UserResource
 
 
 @login_required
@@ -123,11 +126,7 @@ def add_student_pc(request):
         form = PcStudentsForm()
     return render(request, 'GDR/add_student_pc.html', {'form': form})
 
-
-def delete_element(request):
-    pass
-
-
+@login_required
 def edit(request, type_p, id_p):
     url = reverse('index')
     form_selected = "Aucun"
@@ -161,6 +160,7 @@ def edit(request, type_p, id_p):
     return render(request, template_selected, {'form': form})
 
 
+@login_required
 def delete(request,type_p,id_p):
     url = reverse('index')
     if type_p == "Ins":

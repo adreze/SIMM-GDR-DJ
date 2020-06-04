@@ -36,5 +36,5 @@ urlpatterns = [
     path('add/student_pc', views.add_student_pc, name='add_student_pc'),
 
     path('edit/<slug:type_p>/<slug:id_p>/', views.edit, name='edit'),
-    path('delete/<slug:type_p>/<slug:id_p>/', views.delete, name='delete')
+    path('delete/<slug:type_p>/<slug:id_p>/', views.delete, name='delete'),
 ]
