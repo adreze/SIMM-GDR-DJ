@@ -11,7 +11,7 @@
 <body>
 {% block navbar %}
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="#"><img src="{% static "GDR/images/UCLouvainLogo.png" %}" alt="UCLouvain Logo" height="42" width="250" ></a>
+  <a class="navbar-brand" href="{% url 'my_replacements' %}"><img src="{% static "GDR/images/UCLouvainLogo.png" %}" alt="UCLouvain Logo" height="42" width="250" ></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
