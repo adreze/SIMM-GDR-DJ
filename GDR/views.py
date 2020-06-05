@@ -54,7 +54,7 @@ def my_replacements(request):
 
 @login_required
 def add_replacement(request):
-    url = reverse('index')
+    url = reverse('my_replacements')
     current_team_abv = check_team_abv(request)
     if request.method == 'POST':
         form = ReplacementForm(request.POST)
@@ -73,7 +73,7 @@ def add_replacement(request):
 
 @login_required
 def add_reinstall(request):
-    url = reverse('index')
+    url = reverse('my_replacements')
     current_team_abv = check_team_abv(request)
     if request.method == 'POST':
         form = ReinstallForm(request.POST)
@@ -92,7 +92,7 @@ def add_reinstall(request):
 
 @login_required
 def add_install(request):
-    url = reverse('index')
+    url = reverse('my_replacements')
     current_team_abv = check_team_abv(request)
     if request.method == 'POST':
         form = InstallForm(request.POST)
@@ -111,7 +111,7 @@ def add_install(request):
 
 @login_required
 def add_student_pc(request):
-    url = reverse('index')
+    url = reverse('my_replacements')
     current_team_abv = check_team_abv(request)
     if request.method == 'POST':
         form = PcStudentsForm(request.POST)
@@ -128,7 +128,7 @@ def add_student_pc(request):
 
 @login_required
 def edit(request, type_p, id_p):
-    url = reverse('index')
+    url = reverse('my_replacements')
     form_selected = "Aucun"
     db_selected = "Aucun"
     template_selected = 'GDR/index.html'
@@ -162,7 +162,7 @@ def edit(request, type_p, id_p):
 
 @login_required
 def delete(request,type_p,id_p):
-    url = reverse('index')
+    url = reverse('my_replacements')
     if type_p == "Ins":
         db_selected = Install
     if type_p == "Reins":

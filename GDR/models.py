@@ -1,6 +1,6 @@
 from django.db import models
 
-# Create your models here.
+
 TEAMS = (
     ('CE', 'SIMM-Centre'),
     ('ME', 'SIMM-Mercier'),
@@ -32,7 +32,7 @@ class Install(models.Model):
     apex = models.BooleanField(default=False)
     type = models.CharField(max_length=200, choices=TYPES)
     byteam = models.CharField(max_length=20, choices=TEAMS)
-    comments = models.CharField(max_length=200)
+    comments = models.CharField(max_length=120, blank=True)
 
 
 def __str__(self):
@@ -51,7 +51,7 @@ class Reinstall(models.Model):
     backup = models.BooleanField(default=False)
     type = models.CharField(max_length=200, choices=TYPES)
     byteam = models.CharField(max_length=20, choices=TEAMS)
-    comments = models.CharField(max_length=200)
+    comments = models.CharField(max_length=120, blank=True)
 
 
 class Replacement(models.Model):
@@ -71,7 +71,7 @@ class Replacement(models.Model):
     apex = models.BooleanField(default=False)
     type = models.CharField(max_length=200, choices=TYPES)
     byteam = models.CharField(max_length=20, choices=TEAMS)
-    comments = models.CharField(max_length=200)
+    comments = models.CharField(max_length=120, blank=True)
 
 
 class StudentPC(models.Model):
@@ -85,4 +85,4 @@ class StudentPC(models.Model):
     lduninstall = models.BooleanField(default=False)
     type = models.CharField(max_length=200, choices=TYPES)
     byteam = models.CharField(max_length=20, choices=TEAMS)
-    comments = models.CharField(max_length=200)
+    comments = models.CharField(max_length=120, blank=True)

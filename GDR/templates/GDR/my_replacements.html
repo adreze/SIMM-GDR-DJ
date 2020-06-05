@@ -17,9 +17,11 @@
             <thead>
               <tr>
                   <th scope='col'>Utilisateur</th>
-                  <th scope='col'>Nouvel ordinateur</th>
+                  <th scope='col'>Ordinateur</th>
                   <th scope='col'>Type</th>
                   <th scope='col'>Date planifié</th>
+                  <th score='col'>Avancement</th>
+                  <th scope='col'>Commentaires</th>
                   <th scope='col'>Actions</th>
               </tr>
             </thead>
@@ -33,6 +35,49 @@
             <td>{{ install.computer }}</td>
             <td>{{ install.get_type_display }}</td>
             <td>{{ install.dateplanned|date:"d.m.Y" }}</td>
+            <td>
+                {%if install.dcu %}
+                    <img src="{% static "GDR/images/icons/check-circle.svg" %}" alt ="" width = "16" height="16" title="Dell Command Update">
+                {%else%}
+                    <img src="{% static "GDR/images/icons/circle.svg" %}" alt ="" width = "15" height="15" title="Dell Command Update">
+                {% endif %}
+                {%if install.gds %}
+                    <img src="{% static "GDR/images/icons/check-circle.svg" %}" alt ="" width = "16" height="16" title="Gestion de Stock">
+                {%else%}
+                    <img src="{% static "GDR/images/icons/circle.svg" %}" alt ="" width = "15" height="15" title="Gestion de Stock">
+                {% endif %}
+                {%if install.appext %}
+                    <img src="{% static "GDR/images/icons/check-circle.svg" %}" alt ="" width = "16" height="16" title="Applications/Extensions">
+                {%else%}
+                    <img src="{% static "GDR/images/icons/circle.svg" %}" alt ="" width = "15" height="15" title="Applications/Extensions">
+                {% endif %}
+                {%if install.printers %}
+                    <img src="{% static "GDR/images/icons/check-circle.svg" %}" alt ="" width = "16" height="16" title="Imprimantes">
+                {%else%}
+                    <img src="{% static "GDR/images/icons/circle.svg" %}" alt ="" width = "15" height="15" title="Imprimantes">
+                {% endif %}
+                {%if install.gdp %}
+                    <img src="{% static "GDR/images/icons/check-circle.svg" %}" alt ="" width = "16" height="16" title="Gestion de parc">
+                {%else%}
+                    <img src="{% static "GDR/images/icons/circle.svg" %}" alt ="" width = "15" height="15" title="Gestion de parc">
+                {% endif %}
+                {%if install.backup %}
+                    <img src="{% static "GDR/images/icons/check-circle.svg" %}" alt ="" width = "16" height="16" title="Backup">
+                {%else%}
+                    <img src="{% static "GDR/images/icons/circle.svg" %}" alt ="" width = "15" height="15" title="Backup">
+                {% endif %}
+                {%if install.invoice %}
+                    <img src="{% static "GDR/images/icons/check-circle.svg" %}" alt ="" width = "16" height="16" title="Facturation">
+                {%else%}
+                    <img src="{% static "GDR/images/icons/circle.svg" %}" alt ="" width = "15" height="15" title="Facturation">
+                {% endif %}
+                {%if install.apex %}
+                    <img src="{% static "GDR/images/icons/check-circle.svg" %}" alt ="" width = "16" height="16" title="Apex">
+                {%else%}
+                    <img src="{% static "GDR/images/icons/circle.svg" %}" alt ="" width = "15" height="15" title="Apex">
+                {% endif %}
+            </td>
+            <td>{{ install.comments|stringformat:".40s" }}</td>
             <td>
                 <button type="button" class="btn btn-warning" onclick="location.href='{% url 'edit' id_p=install.id type_p=install.type %}'">Modifier</button>
                 <button type="button" class="btn btn-danger" onclick="location.href='{% url 'delete' id_p=install.id type_p=install.type %}'">Effacer</button>
@@ -52,6 +97,34 @@
             <td>{{ reinstall.get_type_display }}</td>
             <td>{{ reinstall.dateplanned|date:"d.m.Y" }}</td>
             <td>
+                {%if reinstall.dcu %}
+                    <img src="{% static "GDR/images/icons/check-circle.svg" %}" alt ="" width = "16" height="16" title="Dell Command Update">
+                {%else%}
+                    <img src="{% static "GDR/images/icons/circle.svg" %}" alt ="" width = "15" height="15" title="Dell Command Update">
+                {% endif %}
+                {%if reinstall.datatransfert %}
+                    <img src="{% static "GDR/images/icons/check-circle.svg" %}" alt ="" width = "16" height="16" title="Transfert de données">
+                {%else%}
+                    <img src="{% static "GDR/images/icons/circle.svg" %}" alt ="" width = "15" height="15" title="Transfert de données">
+                {% endif %}
+                {%if reinstall.appext %}
+                    <img src="{% static "GDR/images/icons/check-circle.svg" %}" alt ="" width = "16" height="16" title="Applications/Extensions">
+                {%else%}
+                    <img src="{% static "GDR/images/icons/circle.svg" %}" alt ="" width = "15" height="15" title="Applications/Extensions">
+                {% endif %}
+                {%if reinstall.printers %}
+                    <img src="{% static "GDR/images/icons/check-circle.svg" %}" alt ="" width = "16" height="16" title="Imprimantes">
+                {%else%}
+                    <img src="{% static "GDR/images/icons/circle.svg" %}" alt ="" width = "15" height="15" title="Imprimantes">
+                {% endif %}
+                {%if reinstall.backup %}
+                    <img src="{% static "GDR/images/icons/check-circle.svg" %}" alt ="" width = "16" height="16" title="Backup">
+                {%else%}
+                    <img src="{% static "GDR/images/icons/circle.svg" %}" alt ="" width = "15" height="15" title="Backup">
+                {% endif %}
+            </td>
+            <td>{{ reinstall.comments|stringformat:".40s" }}</td>
+            <td>
                 <button type="button" class="btn btn-warning" onclick="location.href='{% url 'edit' id_p=reinstall.id type_p=reinstall.type %}'">Modifier</button>
                 <button type="button" class="btn btn-danger" onclick="location.href='{% url 'delete' id_p=reinstall.id type_p=reinstall.type %}'">Effacer</button>
             </td>
@@ -69,10 +142,63 @@
                 <td>{{ replacement.computer }}</td>
                 <td>{{ replacement.get_type_display }}</td>
                 <td>{{ replacement.dateplanned|date:"d.m.Y" }}</td>
+                                <td>
+                    {%if replacement.dcu %}
+                        <img src="{% static "GDR/images/icons/check-circle.svg" %}" alt ="" width = "16" height="16" title="Dell Command Update">
+                    {%else%}
+                        <img src="{% static "GDR/images/icons/circle.svg" %}" alt ="" width = "15" height="15" title="Dell Command Update">
+                    {% endif %}
+                    {%if replacement.gds %}
+                        <img src="{% static "GDR/images/icons/check-circle.svg" %}" alt ="" width = "16" height="16" title="Gestion de Stock">
+                    {%else%}
+                        <img src="{% static "GDR/images/icons/circle.svg" %}" alt ="" width = "15" height="15" title="Gestion de Stock">
+                    {% endif %}
+                    {%if replacement.datatransfert %}
+                        <img src="{% static "GDR/images/icons/check-circle.svg" %}" alt ="" width = "16" height="16" title="Transfert de données">
+                    {%else%}
+                        <img src="{% static "GDR/images/icons/circle.svg" %}" alt ="" width = "15" height="15" title="Transfert de données">
+                    {% endif %}
+                    {%if replacement.appext %}
+                        <img src="{% static "GDR/images/icons/check-circle.svg" %}" alt ="" width = "16" height="16" title="Applications/Extensions">
+                    {%else%}
+                        <img src="{% static "GDR/images/icons/circle.svg" %}" alt ="" width = "15" height="15" title="Applications/Extensions">
+                    {% endif %}
+                    {%if replacement.printers %}
+                        <img src="{% static "GDR/images/icons/check-circle.svg" %}" alt ="" width = "16" height="16" title="Imprimantes">
+                    {%else%}
+                        <img src="{% static "GDR/images/icons/circle.svg" %}" alt ="" width = "15" height="15" title="Imprimantes">
+                    {% endif %}
+                    {%if replacement.gdp %}
+                        <img src="{% static "GDR/images/icons/check-circle.svg" %}" alt ="" width = "16" height="16" title="Gestion de Parc">
+                    {%else%}
+                        <img src="{% static "GDR/images/icons/circle.svg" %}" alt ="" width = "15" height="15" title="Gestion de Parc">
+                    {% endif %}
+                    {%if replacement.backupnew %}
+                        <img src="{% static "GDR/images/icons/check-circle.svg" %}" alt ="" width = "16" height="16" title="Backup Nouveau">
+                    {%else%}
+                        <img src="{% static "GDR/images/icons/circle.svg" %}" alt ="" width = "15" height="15" title="Backup Nouveau">
+                    {% endif %}
+                    {%if replacement.backupold %}
+                        <img src="{% static "GDR/images/icons/check-circle.svg" %}" alt ="" width = "16" height="16" title="Backup Ancien">
+                    {%else%}
+                        <img src="{% static "GDR/images/icons/circle.svg" %}" alt ="" width = "15" height="15" title="Backup Ancien">
+                    {% endif %}
+                    {%if replacement.invoice %}
+                        <img src="{% static "GDR/images/icons/check-circle.svg" %}" alt ="" width = "16" height="16" title="Facturation">
+                    {%else%}
+                        <img src="{% static "GDR/images/icons/circle.svg" %}" alt ="" width = "15" height="15" title="Facturation">
+                    {% endif %}
+                    {%if replacement.apex %}
+                        <img src="{% static "GDR/images/icons/check-circle.svg" %}" alt ="" width = "16" height="16" title="Apex">
+                    {%else%}
+                        <img src="{% static "GDR/images/icons/circle.svg" %}" alt ="" width = "15" height="15" title="Apex">
+                    {% endif %}
+                </td>
+                <td>{{ replacement.comments|stringformat:".40s" }}</td>
                 <td>
                     <button type="button" class="btn btn-warning" onclick="location.href='{% url 'edit' id_p=replacement.id type_p=replacement.type %}'">Modifier</button>
                     <button type="button" class="btn btn-danger" onclick="location.href='{% url 'delete' id_p=replacement.id type_p=replacement.type %}'">Effacer</button>
-            </td>
+                </td>
             </tr>
         </tbody>
     {% endfor %}
@@ -87,9 +213,32 @@
                 <td>{{ student_pc.get_type_display }}</td>
                 <td>{{ student_pc.dateplanned|date:"d.m.Y" }}</td>
                 <td>
+                    {%if student_pc.dcu %}
+                        <img src="{% static "GDR/images/icons/check-circle.svg" %}" alt ="" width = "16" height="16" title="Dell Command Update">
+                    {%else%}
+                        <img src="{% static "GDR/images/icons/circle.svg" %}" alt ="" width = "15" height="15" title="Dell Command Update">
+                    {% endif %}
+                    {%if student_pc.appext %}
+                        <img src="{% static "GDR/images/icons/check-circle.svg" %}" alt ="" width = "16" height="16" title="Applications / Extensions">
+                    {%else%}
+                        <img src="{% static "GDR/images/icons/circle.svg" %}" alt ="" width = "15" height="15" title="Applications / Extensions">
+                    {% endif %}
+                    {%if student_pc.adminblank %}
+                        <img src="{% static "GDR/images/icons/check-circle.svg" %}" alt ="" width = "16" height="16" title="Admin a Blanc">
+                    {%else%}
+                        <img src="{% static "GDR/images/icons/circle.svg" %}" alt ="" width = "15" height="15" title="Admin a Blanc">
+                    {% endif %}
+                    {%if student_pc.lduninstall %}
+                        <img src="{% static "GDR/images/icons/check-circle.svg" %}" alt ="" width = "16" height="16" title="Landesk Desinstallé">
+                    {%else%}
+                        <img src="{% static "GDR/images/icons/circle.svg" %}" alt ="" width = "15" height="15" title="Landesk Desinstallé">
+                    {% endif %}
+                </td>
+                <td>{{ student_pc.comments|stringformat:".40s" }}</td>
+                <td>
                     <button type="button" class="btn btn-warning" onclick="location.href='{% url 'edit' id_p=student_pc.id type_p=student_pc.type %}'">Modifier</button>
                     <button type="button" class="btn btn-danger" onclick="location.href='{% url 'delete' id_p=student_pc.id type_p=student_pc.type %}'">Effacer</button>
-             </td>
+                </td>
             </tr>
         </tbody>
     {% endfor %}

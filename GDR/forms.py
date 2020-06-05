@@ -4,6 +4,10 @@ from django.utils.translation import gettext_lazy as _
 from GDR.models import StudentPC, Install, Reinstall, Replacement
 
 
+class DateInput(forms.DateInput):
+    input_type = 'date'
+
+
 class PcStudentsForm(forms.ModelForm):
     class Meta:
         model = StudentPC
@@ -18,6 +22,10 @@ class PcStudentsForm(forms.ModelForm):
             'lduninstall': _('Désinstallation de LanDesk'),
             'comments': _('Commentaires')
         }
+        widgets = {
+            'dateplanned': DateInput(),
+        }
+
 
 
 class InstallForm(forms.ModelForm):
@@ -38,6 +46,10 @@ class InstallForm(forms.ModelForm):
             'apex': _('Apex'),
             'comments': _('Commentaires')
         }
+        widgets = {
+            'dateplanned': DateInput(),
+        }
+
 
 
 class ReinstallForm(forms.ModelForm):
@@ -54,6 +66,9 @@ class ReinstallForm(forms.ModelForm):
             'printers': _('Imprimantes'),
             'backup': _('Backup'),
             'comments': _('Commentaires')
+        }
+        widgets = {
+            'dateplanned': DateInput(),
         }
 
 
@@ -75,5 +90,10 @@ class ReplacementForm(forms.ModelForm):
             'backupold': _('Backup (Ancien PC)'),
             'invoice': _('Facturation'),
             'apex': _('Apex'),
-            'comments': _('Commentaires')
+            'comments': _('Commentaires'),
         }
+        widgets = {
+            'dateplanned': DateInput(),
+        }
+
+

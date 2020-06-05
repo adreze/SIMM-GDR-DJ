@@ -29,12 +29,16 @@ class StudentPCAdmin(ImportExportModelAdmin):
 
 
 admin.site.unregister(User)
+
+
 @admin.register(User)
 class UserAdmin(ImportExportModelAdmin):
     resource_class = UserResource
 
 
 admin.site.unregister(Group)
+
+
 @admin.register(Group)
 class GroupAdmin(ImportExportModelAdmin):
     resource_class = GroupResource
