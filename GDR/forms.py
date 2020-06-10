@@ -1,5 +1,4 @@
 from django import forms
-#from .models import User
 from django.utils.translation import gettext_lazy as _
 from GDR.models import StudentPC, Install, Reinstall, Replacement
 
@@ -27,11 +26,12 @@ class PcStudentsForm(forms.ModelForm):
         }
 
 
-
 class InstallForm(forms.ModelForm):
     class Meta:
         model = Install
-        fields = ('person', 'computer', 'dateplanned', 'dcu', 'gds', 'appext', 'printers', 'gdp', 'backup', 'invoice', 'apex','comments')
+        fields = ('person', 'computer', 'dateplanned', 'dcu', 'gds',
+                  'appext', 'printers', 'gdp', 'backup', 'invoice', 'apex',
+                  'comments')
         labels = {
             'person': _('Personne'),
             'computer': _('Ordinateur'),
@@ -51,11 +51,11 @@ class InstallForm(forms.ModelForm):
         }
 
 
-
 class ReinstallForm(forms.ModelForm):
     class Meta:
         model = Reinstall
-        fields = ('person', 'computer', 'dateplanned', 'dcu', 'datatransfert', 'appext', 'printers', 'backup','comments')
+        fields = ('person', 'computer', 'dateplanned', 'dcu', 'datatransfert', 'appext',
+                  'printers', 'backup', 'comments')
         labels = {
             'person': _('Personne'),
             'computer': _('Ordinateur'),
@@ -75,7 +75,8 @@ class ReinstallForm(forms.ModelForm):
 class ReplacementForm(forms.ModelForm):
     class Meta:
         model = Replacement
-        fields = ('person', 'computer', 'dateplanned', 'dcu', 'gds', 'datatransfert', 'appext', 'printers', 'gdp', 'backupnew', 'backupold', 'invoice', 'apex', 'comments')
+        fields = ('person', 'computer', 'dateplanned', 'dcu', 'gds', 'datatransfert', 'appext', 'printers', 'gdp',
+                  'backupnew', 'backupold', 'invoice', 'apex', 'comments')
         labels = {
             'person': _('Personne'),
             'computer': _('Ordinateur'),
@@ -95,5 +96,3 @@ class ReplacementForm(forms.ModelForm):
         widgets = {
             'dateplanned': DateInput(),
         }
-
-

@@ -1,36 +1,26 @@
-from django.contrib.auth import login, authenticate
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, redirect
-from django.http import HttpResponse, HttpResponseRedirect
+from django.shortcuts import render
+from django.http import HttpResponseRedirect
 from django.urls import reverse
-from tablib import Dataset
-
 from GDR.forms import PcStudentsForm, InstallForm, ReinstallForm, ReplacementForm
 from GDR.models import Install, StudentPC, Replacement, Reinstall
-
-
-#from .forms import UserForm
-from library.resources import UserResource
 
 
 @login_required
 def index(request):
     current_team_abv = check_team_abv(request)
     current_team = check_team(request)
-    #Install.objects.filter(id=1).delete()
-    #if the order_by doesn't work try -dateplanned
     installs = Install.objects.filter(byteam=current_team_abv).order_by('dateplanned')
     reinstalls = Reinstall.objects.filter(byteam=current_team_abv).order_by('dateplanned')
     replacements = Replacement.objects.filter(byteam=current_team_abv).order_by('dateplanned')
     student_pcs = StudentPC.objects.filter(byteam=current_team_abv).order_by('dateplanned')
-    #all_replacement = [installs, reinstalls, replacements, student_pcs]
+
     context = {
         'installs': installs,
         'reinstalls': reinstalls,
         'replacements': replacements,
         'student_pcs': student_pcs,
         'current_team': current_team
-        #'all_replacement': all_replacement
     }
     return render(request, 'GDR/index.html', context)
 
@@ -41,13 +31,11 @@ def my_replacements(request):
     reinstalls = Reinstall.objects.filter(simmuser=request.user).order_by('dateplanned')
     replacements = Replacement.objects.filter(simmuser=request.user).order_by('dateplanned')
     student_pcs = StudentPC.objects.filter(simmuser=request.user).order_by('dateplanned')
-    #all_replacement = [installs, reinstalls, replacements, student_pcs]
     context = {
         'installs': installs,
         'reinstalls': reinstalls,
         'replacements': replacements,
         'student_pcs': student_pcs,
-        #'all_replacement': all_replacement
     }
     return render(request, 'GDR/my_replacements.html', context)
 
@@ -65,7 +53,6 @@ def add_replacement(request):
             p.type = "Rep"
             p.save()
             return HttpResponseRedirect(url)
-        # if a GET (or any other method) we'll create a blank form
     else:
         form = ReplacementForm()
     return render(request, 'GDR/add_replacement.html', {'form': form})
@@ -84,7 +71,6 @@ def add_reinstall(request):
             p.type = "Reins"
             p.save()
             return HttpResponseRedirect(url)
-        # if a GET (or any other method) we'll create a blank form
     else:
         form = ReinstallForm()
     return render(request, 'GDR/add_reinstall.html', {'form': form})
@@ -103,7 +89,6 @@ def add_install(request):
             p.type = "Ins"
             p.save()
             return HttpResponseRedirect(url)
-        # if a GET (or any other method) we'll create a blank form
     else:
         form = InstallForm()
     return render(request, 'GDR/add_install.html', {'form': form})
@@ -125,6 +110,7 @@ def add_student_pc(request):
     else:
         form = PcStudentsForm()
     return render(request, 'GDR/add_student_pc.html', {'form': form})
+
 
 @login_required
 def edit(request, type_p, id_p):
@@ -161,21 +147,20 @@ def edit(request, type_p, id_p):
 
 
 @login_required
-def delete(request,type_p,id_p):
+def delete(request, type_p, id_p):
     url = reverse('my_replacements')
     if type_p == "Ins":
         db_selected = Install
-    if type_p == "Reins":
+    elif type_p == "Reins":
         db_selected = Reinstall
-    if type_p == "Rep":
+    elif type_p == "Rep":
         db_selected = Replacement
-    if type_p == "Stud":
+    elif type_p == "Stud":
         db_selected = StudentPC
     else:
         db_selected = "Aucun"
     db_selected.objects.filter(id=id_p).delete()
     return HttpResponseRedirect(url)
-
 
 
 def check_team(request):

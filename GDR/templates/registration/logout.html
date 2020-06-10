@@ -4,5 +4,10 @@
 {% block nav1 %}active{% endblock%}
 {% block content %}
 <br>
-<p>Vous etes déconnecté !</p>
-<a href="{% url 'login' %}">Cliquez ici pour vous connecter</a>
+<div class="center">
+    <h2>Vous êtes maintenant déconnecté !</h2>
+    <br>
+    <a href="{% url 'login' %}">Cliquez ici pour vous connecter</a>
+</div>
+
+{% endblock %}
