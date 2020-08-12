@@ -6,37 +6,94 @@ from GDR.forms import PcStudentsForm, InstallForm, ReinstallForm, ReplacementFor
 from GDR.models import Install, StudentPC, Replacement, Reinstall
 
 
+filter_on = False
+
 @login_required
 def index(request):
+    typeselected = False
+    if request.method == 'GET':
+        typeselected = request.GET.get('type')
     current_team_abv = check_team_abv(request)
     current_team = check_team(request)
-    installs = Install.objects.filter(byteam=current_team_abv).order_by('dateplanned')
-    reinstalls = Reinstall.objects.filter(byteam=current_team_abv).order_by('dateplanned')
-    replacements = Replacement.objects.filter(byteam=current_team_abv).order_by('dateplanned')
-    student_pcs = StudentPC.objects.filter(byteam=current_team_abv).order_by('dateplanned')
 
-    context = {
-        'installs': installs,
-        'reinstalls': reinstalls,
-        'replacements': replacements,
-        'student_pcs': student_pcs,
-        'current_team': current_team
+    if typeselected == "Ins":
+        installs = Install.objects.filter(byteam=current_team_abv).order_by('dateplanned')
+        context = {
+            'installs': installs,
+            'current_team': current_team
+        }
+    elif typeselected == "Reins":
+        reinstalls = Reinstall.objects.filter(byteam=current_team_abv).order_by('dateplanned')
+        context = {
+            'reinstalls': reinstalls,
+            'current_team': current_team
+        }
+    elif typeselected == "Rep":
+        replacements = Replacement.objects.filter(byteam=current_team_abv).order_by('dateplanned')
+        context = {
+            'replacements': replacements,
+            'current_team': current_team
+        }
+    elif typeselected == "Stud":
+        student_pcs = StudentPC.objects.filter(byteam=current_team_abv).order_by('dateplanned')
+        context = {
+            'student_pcs': student_pcs,
+            'current_team': current_team
+        }
+    else:
+        installs = Install.objects.filter(byteam=current_team_abv).order_by('dateplanned')
+        reinstalls = Reinstall.objects.filter(byteam=current_team_abv).order_by('dateplanned')
+        replacements = Replacement.objects.filter(byteam=current_team_abv).order_by('dateplanned')
+        student_pcs = StudentPC.objects.filter(byteam=current_team_abv).order_by('dateplanned')
+        context = {
+            'installs': installs,
+            'reinstalls': reinstalls,
+            'replacements': replacements,
+            'student_pcs': student_pcs,
+            'current_team': current_team
     }
     return render(request, 'GDR/index.html', context)
 
 
 @login_required
 def my_replacements(request):
-    installs = Install.objects.filter(simmuser=request.user).order_by('dateplanned')
-    reinstalls = Reinstall.objects.filter(simmuser=request.user).order_by('dateplanned')
-    replacements = Replacement.objects.filter(simmuser=request.user).order_by('dateplanned')
-    student_pcs = StudentPC.objects.filter(simmuser=request.user).order_by('dateplanned')
-    context = {
-        'installs': installs,
-        'reinstalls': reinstalls,
-        'replacements': replacements,
-        'student_pcs': student_pcs,
-    }
+    typeselected = False
+    if request.method == 'GET':
+        typeselected = request.GET.get('type')
+    current_team_abv = check_team_abv(request)
+    current_team = check_team(request)
+
+    if typeselected == "Ins":
+        installs = Install.objects.filter(simmuser=request.user).order_by('dateplanned')
+        context = {
+            'installs': installs,
+        }
+    elif typeselected == "Reins":
+        reinstalls = Reinstall.objects.filter(simmuser=request.user).order_by('dateplanned')
+        context = {
+            'reinstalls': reinstalls,
+        }
+    elif typeselected == "Rep":
+        replacements = Replacement.objects.filter(simmuser=request.user).order_by('dateplanned')
+        context = {
+            'replacements': replacements,
+        }
+    elif typeselected == "Stud":
+        student_pcs = StudentPC.objects.filter(simmuser=request.user).order_by('dateplanned')
+        context = {
+            'student_pcs': student_pcs,
+        }
+    else:
+        installs = Install.objects.filter(simmuser=request.user).order_by('dateplanned')
+        reinstalls = Reinstall.objects.filter(simmuser=request.user).order_by('dateplanned')
+        replacements = Replacement.objects.filter(simmuser=request.user).order_by('dateplanned')
+        student_pcs = StudentPC.objects.filter(simmuser=request.user).order_by('dateplanned')
+        context = {
+            'installs': installs,
+            'reinstalls': reinstalls,
+            'replacements': replacements,
+            'student_pcs': student_pcs,
+        }
     return render(request, 'GDR/my_replacements.html', context)
 
 
@@ -183,3 +240,16 @@ def check_team_abv(request):
     if request.user.groups.filter(name="SIMM-MO").exists():
         current_team_abv = "MO"
     return current_team_abv
+
+
+def filter(request):
+    typeselected = request.GET.get('type')
+    if typeselected == "Ins":
+        db_selected = Install
+    elif typeselected == "Reins":
+        db_selected = Reinstall
+    elif typeselected == "Rep":
+        db_selected = Replacement
+    elif typeselected == "Stud":
+        db_selected = StudentPC
+    return typeselected.objects.all()

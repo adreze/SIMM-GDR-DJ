@@ -10,6 +10,26 @@
 </div>
 <br>
 <!--<h2><img src="{% static "GDR/images/icons/person-fill.svg" %}" alt ="" width = "32" height="32" title="TeamReplacementDone"> Remplacements déja éffectué</h2>-->
+<form class="form-inline" method="get" action="">
+    <div class="form-group row col-sm-2">
+      <label class="col-sm-2 col-form-label" for="type_selected">Type</label>
+        <div class="col-sm-1">
+      <select class="form-control" name="type" id ="type_selected">
+          <option>...</option>
+        <option value="Rep">Remplacement</option>
+        <option value="Ins">Installation</option>
+        <option value="Reins">Reinstallation</option>
+        <option value="Stud">PC étudiants</option>
+      </select>
+        </div>
+    </div>
+    <div class="form-check form-check-inline">
+  <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="termine">
+  <label class="form-check-label" for="inlineCheckbox1">terminé(e) </label>
+</div>
+    <button type="submit" class=" btn btn-primary">Filtrer</button>
+</form>
+
 
 <br>
 

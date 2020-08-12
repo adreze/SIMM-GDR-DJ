@@ -9,8 +9,25 @@
     <h1><img src="{% static "GDR/images/icons/people-fill.svg" %}" alt ="" width = "32" height="32" title="TeamReplacementWIP"> Remplacements de l'équipe {{ current_team }}</h1>
 </div>
 <br>
-<!--<h2><img src="{% static "GDR/images/icons/person-fill.svg" %}" alt ="" width = "32" height="32" title="TeamReplacementDone"> Remplacements déja éffectué</h2>-->
 
+<form class="form-inline" method="get" action="">
+    <div class="form-group row col-sm-2">
+      <label class="col-sm-2 col-form-label" for="type_selected">Type</label>
+        <div class="col-sm-1">
+      <select class="form-control" name="type" id ="type_selected">
+          <option>...</option>
+        <option value="Rep">Remplacement</option>
+        <option value="Ins">Installation</option>
+        <option value="Reins">Reinstallation</option>
+        <option value="Stud">PC étudiants</option>
+      </select>
+        </div>
+    </div>
+    <button type="submit" class=" btn btn-primary">Filtrer</button>
+</form>
+
+
+<!--<h2><img src="{% static "GDR/images/icons/person-fill.svg" %}" alt ="" width = "32" height="32" title="TeamReplacementDone"> Remplacements déja éffectué</h2>-->
 <br>
 <table class='table table-striped'>
             <thead>
