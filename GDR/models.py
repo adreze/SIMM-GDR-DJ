@@ -33,6 +33,7 @@ class Install(models.Model):
     type = models.CharField(max_length=200, choices=TYPES)
     byteam = models.CharField(max_length=20, choices=TEAMS)
     comments = models.CharField(max_length=120, blank=True)
+    completed = models.BooleanField(default=False)
 
 
 def __str__(self):
@@ -52,6 +53,7 @@ class Reinstall(models.Model):
     type = models.CharField(max_length=200, choices=TYPES)
     byteam = models.CharField(max_length=20, choices=TEAMS)
     comments = models.CharField(max_length=120, blank=True)
+    completed = models.BooleanField(default=False)
 
 
 class Replacement(models.Model):
@@ -72,6 +74,7 @@ class Replacement(models.Model):
     type = models.CharField(max_length=200, choices=TYPES)
     byteam = models.CharField(max_length=20, choices=TEAMS)
     comments = models.CharField(max_length=120, blank=True)
+    completed = models.BooleanField(default=False)
 
 
 class StudentPC(models.Model):
@@ -86,3 +89,4 @@ class StudentPC(models.Model):
     type = models.CharField(max_length=200, choices=TYPES)
     byteam = models.CharField(max_length=20, choices=TEAMS)
     comments = models.CharField(max_length=120, blank=True)
+    completed = models.BooleanField(default=False)

@@ -126,6 +126,7 @@ def add_reinstall(request):
             p.simmuser = request.user
             p.byteam = current_team_abv
             p.type = "Reins"
+
             p.save()
             return HttpResponseRedirect(url)
     else:
