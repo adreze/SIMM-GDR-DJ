@@ -29,6 +29,7 @@
 
 <!--<h2><img src="{% static "GDR/images/icons/person-fill.svg" %}" alt ="" width = "32" height="32" title="TeamReplacementDone"> Remplacements déja éffectué</h2>-->
 <br>
+
 <table class='table table-striped'>
             <thead>
               <tr>
@@ -46,7 +47,11 @@
 {% if installs %}
     {% for install in installs %}
     <tbody>
+    {%if install.dcu and install.gds and install.appext and install.printers and install.gdp and install.backup and install.invoice and install.apex %}
+        <tr class="zeTable">
+    {% else %}
         <tr>
+    {% endif %}
             <td>{{ install.person }}</td>
             <td>{{ install.computer }}</td>
             <td>{{ install.get_type_display }}</td>
@@ -113,7 +118,11 @@
 {% if reinstalls %}
     {% for reinstall in reinstalls %}
     <tbody>
+    {%if reinstall.dcu and reinstall.datatransfert and reinstall.appext and reinstall.printers and reinstall.backup %}
+        <tr class="zeTable">
+    {% else %}
         <tr>
+    {% endif %}
             <td>{{ reinstall.person }}</td>
             <td>{{ reinstall.computer }}</td>
             <td>{{ reinstall.get_type_display }}</td>
@@ -165,7 +174,11 @@
 {% if replacements %}
     {% for replacement in replacements %}
         <tbody>
+        {%if replacement.dcu and replacement.gds and replacement.datatransfert and replacement.appext and replacement.printers and replacement.gdp and replacement.backupnew and replacement.backupold and replacement.invoice and replacement.apex %}
+            <tr class="zeTable">
+        {% else %}
             <tr>
+        {% endif %}
                 <td>{{ replacement.person }}</td>
                 <td>{{ replacement.computer }}</td>
                 <td>{{ replacement.get_type_display }}</td>
@@ -241,7 +254,11 @@
 {% if student_pcs %}
     {% for student_pc in student_pcs %}
         <tbody>
+        {%if student_pc.dcu and student_pc.appext and student_pc.adminblank and student_pc.lduninstall %}
+            <tr class="zeTable">
+        {% else %}
             <tr>
+        {% endif %}
                 <td>{{ student_pc.person }}</td>
                 <td>{{ student_pc.computer }}</td>
                 <td>{{ student_pc.get_type_display }}</td>

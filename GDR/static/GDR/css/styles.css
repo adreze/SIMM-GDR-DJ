@@ -4,3 +4,7 @@
 .center{
     text-align:center;
 }
+
+table tr.zeTable td{
+    background-color: rgb(186, 221, 192)
+}
