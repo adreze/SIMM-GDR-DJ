@@ -11,19 +11,30 @@
 <br>
 
 <form class="form-inline" method="get" action="">
-    <div class="form-group row col-sm-2">
-      <label class="col-sm-2 col-form-label" for="type_selected">Type</label>
-        <div class="col-sm-1">
-      <select class="form-control" name="type" id ="type_selected">
-          <option>...</option>
-        <option value="Rep">Remplacement</option>
-        <option value="Ins">Installation</option>
-        <option value="Reins">Reinstallation</option>
-        <option value="Stud">PC étudiants</option>
-      </select>
+    <div class="form-group row">
+      <label class="col col-form-label" for="type_selected">Filtrer</label>
+        <div class="col">
+          <select class="form-control" name="type" id ="type_selected">
+              <option></option>
+              <option value="Rep">Remplacement</option>
+              <option value="Ins">Installation</option>
+              <option value="Reins">Reinstallation</option>
+              <option value="Stud">PC étudiants</option>
+          </select>
+        </div>
+<!--            <label class="col-form-label" for="type_selected">Utilisateur </label>-->
+            <div class="col">
+                <select class="form-control" name="user" id ="user_selected">
+                    <option></option>
+                    {% for simmuser in simmusers %}
+                        <option value="{{ simmuser.username }}"> {{ simmuser.username }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        <div class="col">
+            <button type="submit" class=" btn btn-primary">Filtrer</button>
         </div>
     </div>
-    <button type="submit" class=" btn btn-primary">Filtrer</button>
 </form>
 
 
